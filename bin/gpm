@@ -78,7 +78,7 @@ set_dependencies() {
     if test $package = "github.com/bottlenose-inc/rapidjson"
     then
         echo ">> Building rapidjson (with C++)!"
-        local srcpath="go/src/"$package
+        local srcpath=$GOPATH"/src/"$package
         cd $srcpath
         g++ -Wall -fpic -c rjwrapper.cpp -o librjwrapper.o
         ar rvs librjwrapper.a librjwrapper.o
