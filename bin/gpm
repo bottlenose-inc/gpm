@@ -75,21 +75,8 @@ set_dependencies() {
   wait
 
   while read package version; do
-    if test $package = "github.com/bottlenose-inc/rapidjson"
-    then
-        echo ">> Building rapidjson (with C++)!"
-        local srcpath=$GOPATH"/src/"$package
-        cd $srcpath
-        g++ -Wall -fpic -c rjwrapper.cpp -o librjwrapper.o
-        ar rvs librjwrapper.a librjwrapper.o
-        echo ">> librjwrapper.a done"
-        cd -
-        go install "$package"
-        cp $srcpath/librjwrapper.a .
-    else
-        echo ">> Building package "$package""
-        go install "$package"
-    fi
+	echo ">> Building package "$package""
+	go install "$package"
   done < <(echo "$deps")
 
   echo ">> All Done"
